@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useRef, useState } from "react";
+import { createContext, useEffect, useRef, useState } from "react";
 import Cell from "./Cell";
 
 export const GridContext = createContext();
@@ -87,10 +87,10 @@ export default function Grid() {
     while (stack.length > 0) {
       const currentIndex = stack.pop();
       if (!visited[currentIndex]) {
-        dfsOrder.push(['visit', currentIndex]);
+        dfsOrder.push(["visit", currentIndex]);
         visited[currentIndex] = true;
       } else {
-        dfsOrder.push(['backtrack', currentIndex]);
+        dfsOrder.push(["backtrack", currentIndex]);
       }
 
       let adj = adjList[currentIndex].filter((cell) => !visited[cell]);
@@ -107,9 +107,9 @@ export default function Grid() {
 
   async function animate(order) {
     // Clear any previous classes
-    const cells = document.querySelectorAll('.cell');
-    cells.forEach(cell => {
-      cell.classList.remove('visited', 'current');
+    const cells = document.querySelectorAll(".cell");
+    cells.forEach((cell) => {
+      cell.classList.remove("visited", "current");
     });
 
     let temp = {};
@@ -117,23 +117,23 @@ export default function Grid() {
 
     for (let i = 0; i < order.length; i++) {
       const [action, cellIndex] = order[i];
-      
+
       // Remove current class from previous cell
       if (prev !== null) {
-        document.getElementById(String(prev)).classList.remove('current');
+        document.getElementById(String(prev)).classList.remove("current");
       }
 
       // Add current class to current cell
       const currentCell = document.getElementById(String(cellIndex));
-      currentCell.classList.add('current');
+      currentCell.classList.add("current");
 
-      if (action === 'visit') {
-        currentCell.classList.add('visited');
-        
+      if (action === "visit") {
+        currentCell.classList.add("visited");
+
         // Handle maze connections
         if (i < order.length - 1) {
           const nextAction = order[i + 1];
-          if (nextAction[0] === 'visit') {
+          if (nextAction[0] === "visit") {
             const nextIndex = nextAction[1];
             if (cellIndex in temp) {
               temp[cellIndex].push(nextIndex);
@@ -144,17 +144,25 @@ export default function Grid() {
             // Add border removal logic
             const delta = cellIndex - nextIndex;
             if (delta === 1) {
-              currentCell.classList.add('no-left-border');
-              document.getElementById(String(nextIndex)).classList.add('no-right-border');
+              currentCell.classList.add("no-left-border");
+              document
+                .getElementById(String(nextIndex))
+                .classList.add("no-right-border");
             } else if (delta === -1) {
-              currentCell.classList.add('no-right-border');
-              document.getElementById(String(nextIndex)).classList.add('no-left-border');
+              currentCell.classList.add("no-right-border");
+              document
+                .getElementById(String(nextIndex))
+                .classList.add("no-left-border");
             } else if (delta > 1) {
-              currentCell.classList.add('no-top-border');
-              document.getElementById(String(nextIndex)).classList.add('no-bottom-border');
+              currentCell.classList.add("no-top-border");
+              document
+                .getElementById(String(nextIndex))
+                .classList.add("no-bottom-border");
             } else {
-              currentCell.classList.add('no-bottom-border');
-              document.getElementById(String(nextIndex)).classList.add('no-top-border');
+              currentCell.classList.add("no-bottom-border");
+              document
+                .getElementById(String(nextIndex))
+                .classList.add("no-top-border");
             }
           }
         }
@@ -166,7 +174,7 @@ export default function Grid() {
 
     // Remove current class from last cell
     if (prev !== null) {
-      document.getElementById(String(prev)).classList.remove('current');
+      document.getElementById(String(prev)).classList.remove("current");
     }
     setState("SOLVE");
     setMaze(temp);
@@ -188,34 +196,34 @@ export default function Grid() {
             {cells}
           </div>
         </div>
-        
+
         <div className="input-section">
           <div className="input-group">
             <label htmlFor="rows">Rows</label>
-              <input
-                  id="rows"
-                  type="range"
-                  min={10}
-                  max={30}
-                  value={r}
-                  onChange={(e) => {
-                    setR(e.target.value)
-                  }}
-                />
+            <input
+              id="rows"
+              type="range"
+              min={10}
+              max={30}
+              value={r}
+              onChange={(e) => {
+                setR(e.target.value);
+              }}
+            />
           </div>
 
           <div className="input-group">
             <label htmlFor="columns">Columns</label>
-              <input
-                id="columns"
-                type="range"
-                min={10}
-                max={30}
-                value={c}
-                onChange={(e) => {
-                  setC(e.target.value)
-                }}
-              />
+            <input
+              id="columns"
+              type="range"
+              min={10}
+              max={30}
+              value={c}
+              onChange={(e) => {
+                setC(e.target.value);
+              }}
+            />
           </div>
 
           <div className="input-group">
@@ -236,7 +244,12 @@ export default function Grid() {
 
           <div className="button-group">
             <button onClick={() => animate(dfs(0))}>Generate Maze</button>
-            <button onClick={() => window.location.reload()}>Reset</button>
+            <button
+              onClick={() => window.location.reload()}
+              className="btn-spl"
+            >
+              Reset
+            </button>
           </div>
         </div>
       </div>

@@ -89,6 +89,9 @@ body {
   .input-section {
     width: 100%;
   }
+  .nav-btns > button{
+    width: 100%;
+  }
 }
 
 .input-group {
@@ -174,7 +177,7 @@ button:hover {
   opacity: 0.9;
 }
 
-button:last-child {
+.btn-spl {
   background-color: var(--input-bg);
   border: 1px solid var(--border);
 }
@@ -183,3 +186,27 @@ button:last-child {
 .no-right-border { border-right: none; }
 .no-top-border { border-top: none; }
 .no-bottom-border { border-bottom: none; }
+
+.arr {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; /* Bars aligned to the bottom */
+  gap: clamp(2px, 0.5vw, 4px);
+  margin: clamp(16px, 2vw, 20px) auto;
+}
+
+.ele {
+  background-color: var(--primary); /* accent color for elements */
+  margin: 0;
+  width: clamp(4px, 1vw, 8px);
+  transition: background-color 0.3s ease;
+}
+
+
+.first{
+  flex: 1;
+}
+
+.second{
+  flex: 1;
+}

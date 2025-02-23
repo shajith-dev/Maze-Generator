@@ -210,6 +210,7 @@ export default function Grid() {
                 setR(e.target.value);
               }}
             />
+            <div className="speed-value">{r}</div>
           </div>
 
           <div className="input-group">
@@ -224,6 +225,7 @@ export default function Grid() {
                 setC(e.target.value);
               }}
             />
+            <div className="speed-value">{c}</div>
           </div>
 
           <div className="input-group">

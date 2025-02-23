@@ -10,13 +10,13 @@ export default function App() {
       <div className="nav-btns">
         <button
           onClick={() => setPage(1)}
-          className={`${page === 1 ? "btn-spl" : ""}`}
+          className={`${page === 0 ? "btn-spl" : ""}`}
         >
           Maze Generation
         </button>
         <button
           onClick={() => setPage(0)}
-          className={`${page === 0 ? "btn-spl" : ""}`}
+          className={`${page === 1 ? "btn-spl" : ""}`}
         >
           Sort Visualization
         </button>

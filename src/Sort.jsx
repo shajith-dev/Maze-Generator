@@ -177,6 +177,7 @@ export default function Sort() {
             onChange={(event) => {
               setSize(Number(event.target.value));
             }}
+            value={size}
           />
           <div className="speed-value">{size}</div>
         </div>

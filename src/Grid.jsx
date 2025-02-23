@@ -7,8 +7,6 @@ export default function Grid() {
   const [r, setR] = useState(15);
   const [c, setC] = useState(15);
   const [state, setState] = useState("GENERATE");
-  const [start, setStart] = useState(null);
-  const [end, setEnd] = useState(null);
   const [maze, setMaze] = useState({});
   const [speed, setSpeed] = useState(5);
   const [cells, setCells] = useState(
@@ -85,7 +83,6 @@ export default function Grid() {
     let dfsOrder = [];
     let visited = Array(r * c).fill(false);
     let stack = [index];
-    let path = [index]; // Track the actual path including backtracking
 
     while (stack.length > 0) {
       const currentIndex = stack.pop();
@@ -177,7 +174,7 @@ export default function Grid() {
   }
 
   return (
-    <GridContext.Provider value={{ r, c, state, start, end, setStart, setEnd,maze }}>
+    <GridContext.Provider value={{ r, c, state, maze }}>
       <div className="page">
         <div className="maze">
           <div
@@ -195,26 +192,30 @@ export default function Grid() {
         <div className="input-section">
           <div className="input-group">
             <label htmlFor="rows">Rows</label>
-            <input
-              id="rows"
-              type="number"
-              min={1}
-              max={30}
-              value={r}
-              onChange={(e) => setR(parseInt(e.target.value) || 15)}
-            />
+              <input
+                  id="rows"
+                  type="range"
+                  min={10}
+                  max={30}
+                  value={r}
+                  onChange={(e) => {
+                    setR(e.target.value)
+                  }}
+                />
           </div>
 
           <div className="input-group">
             <label htmlFor="columns">Columns</label>
-            <input
-              id="columns"
-              type="number"
-              min={1}
-              max={30}
-              value={c}
-              onChange={(e) => setC(parseInt(e.target.value) || 15)}
-            />
+              <input
+                id="columns"
+                type="range"
+                min={10}
+                max={30}
+                value={c}
+                onChange={(e) => {
+                  setC(e.target.value)
+                }}
+              />
           </div>
 
           <div className="input-group">

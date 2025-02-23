@@ -218,7 +218,7 @@ export default function Grid() {
           </div>
 
           <div className="input-group">
-            <label htmlFor="speed">Animation Speed</label>
+            <label htmlFor="speed">Delay</label>
             <input
               id="speed"
               type="range"
